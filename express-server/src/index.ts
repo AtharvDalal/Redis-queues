@@ -18,7 +18,6 @@ client.on('ready', () => {
     console.log('Redis client ready');
 });
 
-// Wait for the client to be ready before proceeding
 client.connect().then(() => {
     console.log('Redis client connected and ready to use');
 }).catch(err => {
@@ -28,7 +27,6 @@ client.connect().then(() => {
 app.post('/submit', async (req, res) => {
     const { problemId, userId, code, language } = req.body;
     try {
-        // Ensure the client is connected before using it
         if (!client.isOpen) {
             await client.connect();
         }
